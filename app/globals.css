@@ -1,7 +1,22 @@
 @import url("./view-transition/viewTransition.css");
+@import url("./reset.css");
+
+@import "tailwindcss";
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+:root {
+  --font-helvetica-neue: "Helvetica Neue", sans-serif;
+}
+
+body {
+  font-family: var(--font-helvetica-neue);
+}
+
+.home-link {
+  font-size: clamp(1rem, 3.5vw, 16rem);
+  font-weight: semibold;
 }
