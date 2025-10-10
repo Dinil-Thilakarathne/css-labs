@@ -1,5 +1,5 @@
-@import url("./view-transition/viewTransition.css");
-@import url("./reset.css");
+/* @import url("./view-transition/viewTransition.css");
+@import url("./reset.css"); */
 
 @import "tailwindcss";
 
@@ -19,4 +19,9 @@ body {
 .home-link {
   font-size: clamp(1rem, 3.5vw, 16rem);
   font-weight: semibold;
+}
+
+
+@theme inline {
+  --font-helvetica-neue: "Helvetica Neue", sans-serif;
 }
