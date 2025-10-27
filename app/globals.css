@@ -21,7 +21,55 @@ body {
   font-weight: semibold;
 }
 
-
 @theme inline {
   --font-helvetica-neue: "Helvetica Neue", sans-serif;
+}
+
+.container {
+  display: grid;
+  min-width: 100vw;
+  min-height: 100vh;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "header header header top-right top-right top-right top-right"
+    "header header header top-right top-right top-right top-right"
+    "left-middle left-middle left-middle top-right top-right top-right top-right"
+    "left-middle left-middle left-middle logo right-down right-down right-down"
+    "left-middle left-middle left-middle logo right-down right-down right-down"
+    "left-down left-down left-down left-down right-down right-down right-down"
+    "left-down left-down left-down left-down right-down right-down right-down"
+    "left-down left-down left-down left-down right-down right-down right-down";
+}
+
+.header {
+  grid-area: header;
+  @apply bg-red-300
+}
+
+.left-middle {
+  grid-area: left-middle;
+  @apply bg-green-300;
+}
+
+.top-right {
+  grid-area: top-right;
+  @apply bg-blue-300;
+}
+
+.logo {
+  grid-area: logo;
+  @apply bg-yellow-300;
+}
+
+.left-down {
+  grid-area: left-down;
+  @apply bg-purple-300;
+}
+
+.right-down {
+  grid-area: right-down;
+  @apply bg-pink-300;
 }
