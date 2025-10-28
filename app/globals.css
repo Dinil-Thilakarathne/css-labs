@@ -29,33 +29,63 @@ body {
   display: grid;
   min-width: 100vw;
   min-height: 100vh;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(8, 1fr);
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(10, 1fr);
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "header header header top-right top-right top-right top-right"
-    "header header header top-right top-right top-right top-right"
-    "left-middle left-middle left-middle top-right top-right top-right top-right"
-    "left-middle left-middle left-middle logo right-down right-down right-down"
-    "left-middle left-middle left-middle logo right-down right-down right-down"
-    "left-down left-down left-down left-down right-down right-down right-down"
-    "left-down left-down left-down left-down right-down right-down right-down"
-    "left-down left-down left-down left-down right-down right-down right-down";
+    "logo"
+    "header"
+    "left-top"
+    "left-top"
+    "left-down"
+    "left-down"
+    "right-top"
+    "right-top"
+    "right-down"
+    "right-down";
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      ". . logo logo . ."
+      ". . logo logo . ."
+      ". header header header header ."
+      ". header header header header ."
+      "left-top left-top left-top right-top right-top right-top"
+      "left-top left-top left-top right-top right-top right-top"
+      "left-down left-down left-down right-down right-down right-down"
+      "left-down left-down left-down right-down right-down right-down";
+  }
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-areas:
+      "header header header right-top right-top right-top right-top"
+      "header header header right-top right-top right-top right-top"
+      "left-top left-top left-top right-top right-top right-top right-top"
+      "left-top left-top left-top logo right-down right-down right-down"
+      "left-top left-top left-top logo right-down right-down right-down"
+      "left-down left-down left-down left-down right-down right-down right-down"
+      "left-down left-down left-down left-down right-down right-down right-down"
+      "left-down left-down left-down left-down right-down right-down right-down";
+  }
 }
 
 .header {
   grid-area: header;
-  @apply bg-red-300
+  @apply bg-red-300;
 }
 
-.left-middle {
-  grid-area: left-middle;
+.left-top {
+  grid-area: left-top;
   @apply bg-green-300;
 }
 
-.top-right {
-  grid-area: top-right;
+.right-top {
+  grid-area: right-top;
   @apply bg-blue-300;
 }
 
