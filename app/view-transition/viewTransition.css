@@ -42,7 +42,7 @@
   view-transition-name: match-text;
 } */
 ::view-transition-group(*) {
-  animation-duration: 5s;
+  animation-duration: 1s;
 }
 
 html::view-transition-old(*),
