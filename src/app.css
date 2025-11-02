@@ -1,2 +1,210 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+/* Reset CSS */
+/*
+  1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+  2. Remove default margins and padding
+  3. Reset all borders.
+*/
+
+*,
+::after,
+::before,
+::backdrop,
+::file-selector-button {
+	box-sizing: border-box; /* 1 */
+	margin: 0; /* 2 */
+	padding: 0; /* 2 */
+	border: 0 solid; /* 3 */
+}
+
+/* Font Face Declarations */
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: url('/fonts/HelveticaNeueLight.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: url('/fonts/HelveticaNeue.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: url('/fonts/HelveticaNeueMedium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: url('/fonts/HelveticaNeueBold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* CSS Variables */
+:root {
+	--font-helvetica-neue: 'Helvetica Neue', sans-serif;
+}
+
+body {
+	font-family: var(--font-helvetica-neue);
+}
+
+/* Custom Classes */
+.home-link {
+	font-size: clamp(1rem, 3.5vw, 16rem);
+	font-weight: 600;
+}
+
+/* Tailwind Theme Extension */
+@theme inline {
+	--font-helvetica-neue: 'Helvetica Neue', sans-serif;
+}
+
+/* Grid Container Styles */
+.container {
+	display: grid;
+	min-width: 100vw;
+	min-height: 100vh;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(10, 1fr);
+	gap: 0px 0px;
+	grid-auto-flow: row;
+	grid-template-areas:
+		'logo'
+		'header'
+		'left-top'
+		'left-top'
+		'left-down'
+		'left-down'
+		'right-top'
+		'right-top'
+		'right-down'
+		'right-down';
+
+	@media screen and (min-width: 768px) {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 1fr 1fr 1fr 1fr;
+		grid-template-areas:
+			'. . logo logo . .'
+			'. . logo logo . .'
+			'. header header header header .'
+			'. header header header header .'
+			'left-top left-top left-top right-top right-top right-top'
+			'left-top left-top left-top right-top right-top right-top'
+			'left-down left-down left-down right-down right-down right-down'
+			'left-down left-down left-down right-down right-down right-down';
+	}
+
+	@media screen and (min-width: 1024px) {
+		grid-template-columns: repeat(7, 1fr);
+		grid-template-rows: repeat(8, 1fr);
+		grid-template-areas:
+			'header header header right-top right-top right-top right-top'
+			'header header header right-top right-top right-top right-top'
+			'left-top left-top left-top right-top right-top right-top right-top'
+			'left-top left-top left-top logo right-down right-down right-down'
+			'left-top left-top left-top logo right-down right-down right-down'
+			'left-down left-down left-down left-down right-down right-down right-down'
+			'left-down left-down left-down left-down right-down right-down right-down'
+			'left-down left-down left-down left-down right-down right-down right-down';
+	}
+}
+
+.header {
+	grid-area: header;
+	@apply bg-red-300;
+}
+
+.left-top {
+	grid-area: left-top;
+	@apply bg-green-300;
+}
+
+.right-top {
+	grid-area: right-top;
+	@apply bg-blue-300;
+}
+
+.logo {
+	grid-area: logo;
+	@apply bg-yellow-300;
+}
+
+.left-down {
+	grid-area: left-down;
+	@apply bg-purple-300;
+}
+
+.right-down {
+	grid-area: right-down;
+	@apply bg-pink-300;
+}
+
+/* View Transition Styles */
+.main {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 40px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	position: relative;
+}
+
+.item {
+	height: 200px;
+	width: 400px;
+	grid-column-start: 1;
+}
+
+.item-1 {
+	background-color: lightcoral;
+}
+
+.item-2 {
+	background-color: lightseagreen;
+}
+
+.item-3 {
+	background-color: lightblue;
+}
+
+.item-4 {
+	background-color: lightgoldenrodyellow;
+}
+
+.active {
+	position: absolute;
+	right: 0;
+	height: 100%;
+}
+
+.match-div {
+	view-transition-name: match-element;
+}
+
+::view-transition-group(*) {
+	animation-duration: 1s;
+}
+
+html::view-transition-old(*),
+html::view-transition-new(*) {
+	height: 100%;
+}
