@@ -10,7 +10,9 @@
 					href={nav.href}
 					class="block w-full text-right font-helvetica-neue text-5xl font-semibold lg:text-8xl"
 				>
-					{nav.name}
+					<h1>
+						{nav.name}
+					</h1>
 				</a>
 			</div>
 		{/each}
