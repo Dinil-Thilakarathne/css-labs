@@ -1,6 +1,29 @@
 <script lang="ts">
 	let isOpen = $state(false);
+	import {
+		CubicBezier,
+		type CubicBezierValue,
+		Pane,
+		type PanePosition,
+		RadioGrid,
+		Slider
+	} from 'svelte-tweakpane-ui';
+
+	const options: PanePosition[] = ['inline', 'fixed', 'draggable'];
+	let position: PanePosition = options[0];
+	let duration = 0.4;
+	let value: CubicBezierValue = {
+		x1: 0.17,
+		y1: 2.2,
+		x2: 0.84,
+		y2: 0.96
+	};
 </script>
+
+<Pane position="fixed" title="Pane">
+	<CubicBezier bind:value expanded={true} picker="inline" label="Cubic Bezier" />
+	<Slider bind:value={duration} min={0} max={5} format={(v) => v.toFixed(2)} label="Duration" />
+</Pane>
 
 <main
 	class="relative flex min-h-screen w-full flex-col items-center justify-center bg-neutral-950 text-neutral-50"
@@ -16,7 +39,7 @@
 		</button>
 	</div>
 
-	<div class="card" class:open={isOpen}>
+	<div class="card" class:open={isOpen} style="--duration:{duration}s;--cubic-bezier:{value}">
 		<div class="h-full w-full p-8 flex flex-col justify-between">
 			<div>
 				<h2 class="text-2xl font-medium mb-2">Hello World</h2>
@@ -77,8 +100,9 @@
 		transition:
 			opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
 			translate 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-			scale 0.4s cubic-bezier(0.17, 2.2, 0.84, 0.96),
+			scale 0.4s cubic-bezier(var(--cubic-bezier)),
 			display 0.4s allow-discrete; /* Important! */
+		transition-duration: var(--duration);
 	}
 
 	.card.open {
